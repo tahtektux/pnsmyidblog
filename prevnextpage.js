@@ -1,19 +1,15 @@
 <script type='text/javascript'>
-
-if (typeof(jQuery) == 'undefined') {document.write("<scr" + "ipt type=\"text/javascript\" src=\"//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js\"></scr" + "ipt>");}
-
-</script>
-<script type='text/javascript'>
-
-(function($){  
-    var newerLink = $('a.blog-pager-newer-link');
-    var olderLink = $('a.blog-pager-older-link');
-    $.get(newerLink.attr('href'), function (data) {
-     newerLink.html($(data).find('.post h1.post-title').text());  
-    },"html");
-    $.get(olderLink.attr('href'), function (data2) {
-     olderLink.html($(data2).find('.post h1.post-title').text());  
-    },"html");
-})(jQuery);
-
+//Pager
+$(document).ready(function(){
+var olderLink = $(&quot;a.blog-pager-older-link&quot;).attr(&quot;href&quot;);
+$(&quot;a.blog-pager-older-link&quot;).load(olderLink+&quot; .post-title:first&quot;, function() {
+var olderLinkTitle = $(&quot;a.blog-pager-older-link&quot;).text();
+$(&quot;a.blog-pager-older-link&quot;).text(olderLinkTitle);//rgt
+});
+var newerLink = $(&quot;a.blog-pager-newer-link&quot;).attr(&quot;href&quot;);
+$(&quot;a.blog-pager-newer-link&quot;).load(newerLink+&quot; .post-title:first&quot;, function() {
+var newerLinkTitle = $(&quot;a.blog-pager-newer-link:first&quot;).text();
+$(&quot;a.blog-pager-newer-link&quot;).text(newerLinkTitle);
+});
+});
 </script>
